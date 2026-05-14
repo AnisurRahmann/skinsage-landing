@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkinSage — Ingredient Intelligence for Skincare Stores</title>
+  <meta name="description" content="SkinSage helps Shopify skincare brands answer ingredient questions automatically on product pages — reducing abandoned carts from ingredient confusion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF8F5;
+      --blush: #F5EDE8;
+      --sage: #9BAD9F;
+      --sage-dark: #6B8C72;
+      --stone: #4A4540;
+      --stone-light: #7A736E;
+      --border: #E8E0D8;
+      --white: #FFFFFF;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--stone);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--stone);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo span { color: var(--sage-dark); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--stone);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--sage-dark); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      background: linear-gradient(160deg, var(--white) 0%, var(--cream) 60%, var(--blush) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,173,159,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,237,232,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blush);
+      border: 1px solid var(--border);
+      color: var(--sage-dark);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage-dark);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--sage-dark);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--stone-light);
+      font-weight: 300;
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--stone);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(74,69,64,0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--sage-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(107,140,114,0.3);
+    }
+
+    .btn-secondary {
+      font-size: 0.9rem;
+      color: var(--stone-light);
+      text-decoration: none;
+      font-weight: 400;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--stone); border-color: var(--stone); }
+
+    .hero-stat {
+      margin-top: 4rem;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--stone);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--stone-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* HOW IT WORKS */
+    .section {
+      padding: 100px 5%;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--sage-dark);
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--stone);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--stone-light);
+      max-width: 500px;
+      margin-bottom: 4rem;
+      line-height: 1.7;
+    }
+
+    .hiw-bg {
+      background: var(--cream);
+    }
+
+    .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+      margin-top: 0;
+    }
+
+    .hiw-step {
+      background: var(--white);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .hiw-step:first-child { border-radius: 20px 0 0 20px; }
+    .hiw-step:last-child { border-radius: 0 20px 20px 0; }
+
+    @media (max-width: 768px) {
+      .hiw-step:first-child { border-radius: 20px 20px 0 0; }
+      .hiw-step:last-child { border-radius: 0 0 20px 20px; }
+    }
+
+    .step-number {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      color: var(--blush);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--sage-dark);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--stone);
+      margin-bottom: 0.75rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--stone-light);
+      line-height: 1.7;
+    }
+
+    /* SOCIAL PROOF */
+    .proof-section {
+      background: var(--blush);
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .proof-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .proof-badge {
+      display: inline-block;
+      background: rgba(107,140,114,0.12);
+      color: var(--sage-dark);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(107,140,114,0.25);
+    }
+
+    .proof-placeholder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .proof-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .proof-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blush), var(--border));
+      margin-bottom: 1rem;
+    }
+
+    .proof-quote {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .proof-attribution {
+      font-size: 0.75rem;
+      color: var(--stone-light);
+      font-weight: 500;
+    }
+
+    .proof-coming {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--stone-light);
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 120px 5%;
+      text-align: center;
+      background: linear-gradient(160deg, var(--white) 0%, var(--cream) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(155,173,159,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--stone-light);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .btn-large {
+      font-size: 1.05rem;
+      padding: 1rem 2.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--stone);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--sage-dark); }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-right a {
+      font-size: 0.875rem;
+      color: var(--stone-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--stone); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--stone-light);
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .hero { padding: 100px 6% 60px; }
+      .hero-stat { gap: 2rem; }
+      .section { padding: 70px 6%; }
+      .hiw-step { padding: 2rem 1.5rem; }
+      .hiw-step:first-child, .hiw-step:last-child { border-radius: 0; }
+      .hiw-grid { border-radius: 20px; overflow: hidden; gap: 1px; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-right { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      nav { padding: 0 6%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">Skin<span>Sage</span></a>
+    <a class="nav-cta" href="https://calendly.com/skinsage/demo">Book a Demo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">For Shopify Skincare Brands</div>
+      <h1>Your product pages should answer ingredient questions <em>automatically.</em></h1>
+      <p class="hero-sub">
+        Shoppers abandon skincare purchases when they can't understand what's in the formula.
+        SkinSage turns your ingredient lists into an instant expert — so customers get answers,
+        and you get conversions.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary btn-large" href="https://calendly.com/skinsage/demo">
+          Book a Free Demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn-secondary" href="#how-it-works">See how it works</a>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-item">
+          <span class="stat-number">68%</span>
+          <span class="stat-label">of shoppers read ingredients</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3×</span>
+          <span class="stat-label">more questions, fewer answers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">&lt;2s</span>
+          <span class="stat-label">average answer time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section hiw-bg" id="how-it-works">
+    <div class="section-label">How it works</div>
+    <h2>Live on your store in days, not months.</h2>
+    <p class="section-sub">
+      No custom dev required. We integrate directly with your Shopify catalog.
+    </p>
+    <div class="hiw-grid">
+      <div class="hiw-step">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="step-title">1 — We ingest your catalog</div>
+        <p class="step-desc">
+          Connect your Shopify store and we pull in your full product catalog,
+          ingredient lists, and product descriptions automatically. No manual uploads.
+        </p>
+      </div>
+      <div class="hiw-step">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <div class="step-title">2 — AI learns your products</div>
+        <p class="step-desc">
+          Our AI models your specific formulas and the ingredient science behind them —
+          understanding function, compatibility, and what makes each product unique.
+        </p>
+      </div>
+      <div class="hiw-step">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="step-title">3 — Customers get instant answers</div>
+        <p class="step-desc">
+          A widget on each product page lets shoppers ask any ingredient question
+          and get expert, accurate answers in seconds — reducing confusion and abandoned carts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="proof-section">
+    <div class="proof-inner">
+      <div class="proof-badge">Early Access</div>
+      <h2>Trusted by skincare founders</h2>
+      <p style="color: var(--stone-light); font-size: 1rem; margin-top: 0.5rem;">Case studies coming soon as we roll out to our first cohort.</p>
+
+      <div class="proof-placeholder">
+        <div class="proof-card">
+          <div class="proof-avatar"></div>
+          <p class="proof-quote">"Our customers were abandoning at the ingredient step. This would have saved us so many sales."</p>
+          <div class="proof-attribution">Founder, Shopify Skincare Brand — Beta Preview</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-avatar"></div>
+          <p class="proof-quote">"We spend hours answering 'is this safe for sensitive skin' DMs. A tool like this is exactly what we need."</p>
+          <div class="proof-attribution">Founder, Clean Beauty Store — Beta Preview</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-avatar"></div>
+          <p class="proof-quote">"Ingredient education is our biggest conversion driver. Automating it at scale is a game changer."</p>
+          <div class="proof-attribution">Founder, Botanical Skincare Brand — Beta Preview</div>
+        </div>
+      </div>
+      <p class="proof-coming">We're onboarding our first 10 brand partners. <a href="https://calendly.com/skinsage/demo" style="color: var(--sage-dark); text-decoration: none; font-weight: 500;">Apply for early access →</a></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content: center;">Get started</div>
+      <h2>Stop losing sales to ingredient confusion.</h2>
+      <p>Book a 30-minute call. We'll show you exactly how SkinSage works and whether it's right for your store.</p>
+      <a class="btn-primary btn-large" href="https://calendly.com/skinsage/demo">
+        Book a Free Demo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">Skin<span>Sage</span></a>
+    <div class="footer-right">
+      <a href="mailto:hello@skinsage.ai">hello@skinsage.ai</a>
+      <a href="https://calendly.com/skinsage/demo">Book a Demo</a>
+    </div>
+    <span class="footer-copy">© 2026 SkinSage</span>
+  </footer>
+
+</body>
+</html>
