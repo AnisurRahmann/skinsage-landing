@@ -13,6 +13,6 @@ jobs:
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: team_olUmPoAkQsDAql2TT8HS4stk
-          vercel-project-name: skinsage-landing
+          vercel-org-id: team_9X4RLDe9omW6peHnfkZqHBB4
+          vercel-project-id: prj_ctRIJSv8Pg9ZbEsTeJnwKks5h3te
           vercel-args: '--prod'
