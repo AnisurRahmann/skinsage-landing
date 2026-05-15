@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkinSage — Ingredient Intelligence for Skincare Stores</title>
-  <meta name="description" content="SkinSage helps Shopify skincare brands answer ingredient questions automatically on product pages — reducing abandoned carts from ingredient confusion." />
+  <meta name="description" content="SkinSage answers ingredient questions automatically on your product pages — so customers buy instead of bounce. Built for Shopify skincare founders." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
@@ -156,12 +156,12 @@
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--stone-light);
       font-weight: 300;
-      max-width: 580px;
+      max-width: 620px;
       margin-bottom: 2.5rem;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .hero-actions {
@@ -211,8 +211,6 @@
       flex-wrap: wrap;
     }
 
-    .stat-item { }
-
     .stat-number {
       font-family: var(--font-serif);
       font-size: 2rem;
@@ -229,7 +227,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* HOW IT WORKS */
+    /* SECTIONS */
     .section {
       padding: 100px 5%;
     }
@@ -271,6 +269,7 @@
       line-height: 1.7;
     }
 
+    /* HOW IT WORKS */
     .hiw-bg {
       background: var(--cream);
     }
@@ -294,15 +293,6 @@
     @media (max-width: 768px) {
       .hiw-step:first-child { border-radius: 20px 20px 0 0; }
       .hiw-step:last-child { border-radius: 0 0 20px 20px; }
-    }
-
-    .step-number {
-      font-family: var(--font-serif);
-      font-size: 3.5rem;
-      color: var(--blush);
-      line-height: 1;
-      margin-bottom: 1.5rem;
-      display: block;
     }
 
     .step-icon {
@@ -339,6 +329,90 @@
       line-height: 1.7;
     }
 
+    .step-questions {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .step-q {
+      display: inline-block;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      color: var(--stone-light);
+      padding: 0.2rem 0.7rem;
+      font-style: italic;
+    }
+
+    /* OBJECTION HANDLING */
+    .objections-section {
+      background: var(--stone);
+      padding: 100px 5%;
+    }
+
+    .objections-section .section-label {
+      color: var(--sage);
+    }
+
+    .objections-section .section-label::after {
+      background: var(--sage);
+    }
+
+    .objections-section h2 {
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+
+    .objections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .objection-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .objection-q {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .objection-q::before {
+      content: '"';
+    }
+
+    .objection-q::after {
+      content: '"';
+    }
+
+    .objection-a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .objection-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+    }
+
     /* SOCIAL PROOF */
     .proof-section {
       background: var(--blush);
@@ -347,7 +421,7 @@
     }
 
     .proof-inner {
-      max-width: 700px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -361,15 +435,32 @@
       text-transform: uppercase;
       padding: 0.3rem 0.8rem;
       border-radius: 100px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       border: 1px solid rgba(107,140,114,0.25);
+    }
+
+    .proof-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .proof-logo-slot {
+      width: 120px;
+      height: 40px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      border: 1px dashed var(--border);
     }
 
     .proof-placeholder {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
-      margin-top: 3rem;
     }
 
     .proof-card {
@@ -378,6 +469,15 @@
       padding: 2rem 1.5rem;
       text-align: left;
       border: 1px solid var(--border);
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .proof-card-empty {
+      background: rgba(255,255,255,0.5);
+      border-style: dashed;
     }
 
     .proof-avatar {
@@ -402,10 +502,80 @@
       font-weight: 500;
     }
 
+    .proof-empty-label {
+      font-size: 0.8rem;
+      color: var(--stone-light);
+      font-style: italic;
+      opacity: 0.6;
+    }
+
     .proof-coming {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       font-size: 0.85rem;
       color: var(--stone-light);
+    }
+
+    /* LOOM EMBED */
+    .loom-section {
+      padding: 80px 5%;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .loom-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .loom-section .section-label {
+      justify-content: center;
+    }
+
+    .loom-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .loom-section p {
+      color: var(--stone-light);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .loom-embed-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--blush);
+      border-radius: 16px;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .loom-play-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(74,69,64,0.12);
+    }
+
+    .loom-play-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--sage-dark);
+      margin-left: 3px;
+    }
+
+    .loom-placeholder-text {
+      font-size: 0.9rem;
+      color: var(--stone-light);
+      font-style: italic;
     }
 
     /* CTA */
@@ -497,9 +667,12 @@
       .hero { padding: 100px 6% 60px; }
       .hero-stat { gap: 2rem; }
       .section { padding: 70px 6%; }
+      .objections-section { padding: 70px 6%; }
       .hiw-step { padding: 2rem 1.5rem; }
       .hiw-step:first-child, .hiw-step:last-child { border-radius: 0; }
       .hiw-grid { border-radius: 20px; overflow: hidden; gap: 1px; }
+      .proof-logos { gap: 1rem; }
+      .proof-logo-slot { width: 90px; height: 32px; }
       footer { flex-direction: column; align-items: flex-start; }
       .footer-right { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       nav { padding: 0 6%; }
@@ -517,12 +690,10 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow">For Shopify Skincare Brands</div>
-      <h1>Your product pages should answer ingredient questions <em>automatically.</em></h1>
+      <div class="hero-eyebrow">For Shopify Skincare Founders</div>
+      <h1>Turn <em>"can I use this with retinol?"</em> into a sale.</h1>
       <p class="hero-sub">
-        Shoppers abandon skincare purchases when they can't understand what's in the formula.
-        SkinSage turns your ingredient lists into an instant expert — so customers get answers,
-        and you get conversions.
+        68% of skincare shoppers want ingredient guidance. Your product page lists ingredients but doesn't explain them. SkinSage answers ingredient questions automatically — so customers buy instead of bounce.
       </p>
       <div class="hero-actions">
         <a class="btn-primary btn-large" href="https://calendly.com/skinsage/demo">
@@ -534,15 +705,15 @@
       <div class="hero-stat">
         <div class="stat-item">
           <span class="stat-number">68%</span>
-          <span class="stat-label">of shoppers read ingredients</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">3×</span>
-          <span class="stat-label">more questions, fewer answers</span>
+          <span class="stat-label">of shoppers want ingredient guidance</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">&lt;2s</span>
           <span class="stat-label">average answer time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">0</span>
+          <span class="stat-label">questions left unanswered</span>
         </div>
       </div>
     </div>
@@ -551,9 +722,9 @@
   <!-- HOW IT WORKS -->
   <section class="section hiw-bg" id="how-it-works">
     <div class="section-label">How it works</div>
-    <h2>Live on your store in days, not months.</h2>
+    <h2>Three steps. Live on your store in days.</h2>
     <p class="section-sub">
-      No custom dev required. We integrate directly with your Shopify catalog.
+      No custom dev. No ingredient database to maintain. We handle the science.
     </p>
     <div class="hiw-grid">
       <div class="hiw-step">
@@ -562,8 +733,7 @@
         </div>
         <div class="step-title">1 — We ingest your catalog</div>
         <p class="step-desc">
-          Connect your Shopify store and we pull in your full product catalog,
-          ingredient lists, and product descriptions automatically. No manual uploads.
+          Connect your Shopify store. We pull in your full product catalog and ingredient lists automatically — no manual uploads, no reformatting.
         </p>
       </div>
       <div class="hiw-step">
@@ -572,19 +742,51 @@
         </div>
         <div class="step-title">2 — AI learns your products</div>
         <p class="step-desc">
-          Our AI models your specific formulas and the ingredient science behind them —
-          understanding function, compatibility, and what makes each product unique.
+          The AI learns your specific formulas plus the ingredient science behind them — interactions, skin type compatibility, and layering rules for every active in your lineup.
         </p>
       </div>
       <div class="hiw-step">
         <div class="step-icon">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <div class="step-title">3 — Customers get instant answers</div>
+        <div class="step-title">3 — Customers get expert answers</div>
         <p class="step-desc">
-          A widget on each product page lets shoppers ask any ingredient question
-          and get expert, accurate answers in seconds — reducing confusion and abandoned carts.
+          A widget on each product page answers ingredient questions the moment they're asked — so nothing stands between a curious shopper and checkout.
         </p>
+        <div class="step-questions">
+          <span class="step-q">Can I layer this with my vitamin C serum?</span>
+          <span class="step-q">Is this safe to use with retinol?</span>
+          <span class="step-q">What percentage of niacinamide is in this?</span>
+          <span class="step-q">Will this work for sensitive skin?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTION HANDLING -->
+  <section class="objections-section">
+    <div class="section-label">But I already have…</div>
+    <h2 style="color: var(--white);">We've heard every objection.</h2>
+    <div class="objections-grid">
+      <div class="objection-card">
+        <div class="objection-label">Objection</div>
+        <p class="objection-q">We already have a chat widget</p>
+        <p class="objection-a">General chat can't answer "will this retinol react with my niacinamide" — ingredient-specific knowledge requires ingredient-specific training.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-label">Objection</div>
+        <p class="objection-q">Our pages already list ingredients</p>
+        <p class="objection-a">Listing INCI names isn't guidance — your customers can't decode them, which is exactly why they abandon.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-label">Objection</div>
+        <p class="objection-q">We can't afford another subscription</p>
+        <p class="objection-a">One recovered cart per week pays for SkinSage — and we only charge when you're live.</p>
+      </div>
+      <div class="objection-card">
+        <div class="objection-label">Objection</div>
+        <p class="objection-q">We'll just add an FAQ</p>
+        <p class="objection-a">FAQs answer the questions you predicted — SkinSage answers the questions your customers actually ask.</p>
       </div>
     </div>
   </section>
@@ -594,26 +796,45 @@
     <div class="proof-inner">
       <div class="proof-badge">Early Access</div>
       <h2>Trusted by skincare founders</h2>
-      <p style="color: var(--stone-light); font-size: 1rem; margin-top: 0.5rem;">Case studies coming soon as we roll out to our first cohort.</p>
+      <p style="color: var(--stone-light); font-size: 1rem; margin-top: 0.5rem; margin-bottom: 0;">Case studies coming as we onboard our first cohort.</p>
+
+      <div class="proof-logos">
+        <div class="proof-logo-slot"></div>
+        <div class="proof-logo-slot"></div>
+        <div class="proof-logo-slot"></div>
+        <div class="proof-logo-slot"></div>
+      </div>
 
       <div class="proof-placeholder">
-        <div class="proof-card">
-          <div class="proof-avatar"></div>
-          <p class="proof-quote">"Our customers were abandoning at the ingredient step. This would have saved us so many sales."</p>
-          <div class="proof-attribution">Founder, Shopify Skincare Brand — Beta Preview</div>
+        <div class="proof-card proof-card-empty">
+          <p class="proof-empty-label">Case study coming soon</p>
         </div>
-        <div class="proof-card">
-          <div class="proof-avatar"></div>
-          <p class="proof-quote">"We spend hours answering 'is this safe for sensitive skin' DMs. A tool like this is exactly what we need."</p>
-          <div class="proof-attribution">Founder, Clean Beauty Store — Beta Preview</div>
+        <div class="proof-card proof-card-empty">
+          <p class="proof-empty-label">Case study coming soon</p>
         </div>
-        <div class="proof-card">
-          <div class="proof-avatar"></div>
-          <p class="proof-quote">"Ingredient education is our biggest conversion driver. Automating it at scale is a game changer."</p>
-          <div class="proof-attribution">Founder, Botanical Skincare Brand — Beta Preview</div>
+        <div class="proof-card proof-card-empty">
+          <p class="proof-empty-label">Case study coming soon</p>
         </div>
       </div>
-      <p class="proof-coming">We're onboarding our first 10 brand partners. <a href="https://calendly.com/skinsage/demo" style="color: var(--sage-dark); text-decoration: none; font-weight: 500;">Apply for early access →</a></p>
+
+      <p class="proof-coming">We're onboarding our first 10 brand partners. <a href="https://calendly.com/skinsage/demo" style="color: var(--sage-dark); text-decoration: none; font-weight: 500;">Book a call to apply →</a></p>
+    </div>
+  </section>
+
+  <!-- LOOM DEMO EMBED -->
+  <section class="loom-section">
+    <div class="loom-inner">
+      <div class="section-label" style="justify-content: center;">See it in action</div>
+      <h2>Watch a 5-minute walkthrough</h2>
+      <p>See exactly how SkinSage works on a real Shopify store — from catalog ingestion to a live customer question.</p>
+      <!-- Replace this placeholder with a Loom iframe once recorded -->
+      <!-- <div style="position:relative;aspect-ratio:16/9;"><iframe src="https://www.loom.com/embed/YOUR_LOOM_ID" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;"></iframe></div> -->
+      <div class="loom-embed-placeholder">
+        <div class="loom-play-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <p class="loom-placeholder-text">Demo video coming soon</p>
+      </div>
     </div>
   </section>
 
